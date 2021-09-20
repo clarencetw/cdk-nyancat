@@ -6,6 +6,14 @@ const project = new AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   name: 'cdk-nyancat',
   repositoryUrl: 'https://github.com/clarencetw/cdk-nyancat.git',
+
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+  autoApproveOptions: {
+    secret: 'GITHUB_TOKEN',
+    allowedUsernames: ['clarencetw'],
+  },
+  autoApproveUpgrades: true,
+
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-ec2',
