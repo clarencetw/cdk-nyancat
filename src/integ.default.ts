@@ -17,4 +17,8 @@ const vpc = ec2.Vpc.fromLookup(stack, 'VPC', {
 
 new NyanCat(stack, 'NyanCat', {
   vpc,
+  instanceType: ec2.InstanceType.of(
+    ec2.InstanceClass.T3,
+    ec2.InstanceSize.SMALL,
+  ),
 });

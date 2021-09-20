@@ -11,6 +11,14 @@ export interface NyanCatProps {
    * The VPC
    */
   readonly vpc?: ec2.IVpc;
+
+  /**
+   * The Instance Type
+   *
+   * @default - t3.nano
+   *
+   */
+  readonly instanceType?: ec2.InstanceType;
 }
 
 export class NyanCat extends cdk.Construct {
@@ -22,7 +30,7 @@ export class NyanCat extends cdk.Construct {
 
     const instance = new ec2.Instance(this, 'Instance', {
       vpc,
-      instanceType: ec2.InstanceType.of(
+      instanceType: props.instanceType ?? ec2.InstanceType.of(
         ec2.InstanceClass.T3,
         ec2.InstanceSize.NANO,
       ),
