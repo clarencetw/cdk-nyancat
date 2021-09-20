@@ -11,6 +11,12 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-s3-assets',
   ],
+
+  publishToPypi: {
+    distName: 'cdk-nyancat',
+    module: 'cdk_nyancat',
+  },
+
 });
 const common_exclude = ['cdk.out', 'cdk.context.json'];
 project.npmignore.exclude(...common_exclude);
