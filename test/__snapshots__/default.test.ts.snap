@@ -52,7 +52,7 @@ Object {
         "ImageId": Object {
           "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
         },
-        "InstanceType": "t3.nano",
+        "InstanceType": "t3.small",
         "SecurityGroupIds": Array [
           Object {
             "Fn::GetAtt": Array [
