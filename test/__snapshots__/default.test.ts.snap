@@ -1,0 +1,349 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot - NyanCat 1`] = `
+Object {
+  "Outputs": Object {
+    "NyanCatInstanceIP9968D7C8": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "http://",
+            Object {
+              "Fn::GetAtt": Array [
+                "NyanCatInstance0A813161",
+                "PublicDnsName",
+              ],
+            },
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711ArtifactHashC8D94C03": Object {
+      "Description": "Artifact hash for asset \\"42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711\\"",
+      "Type": "String",
+    },
+    "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3BucketE132AC7C": Object {
+      "Description": "S3 bucket for asset \\"42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711\\"",
+      "Type": "String",
+    },
+    "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F": Object {
+      "Description": "S3 key for asset version \\"42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711\\"",
+      "Type": "String",
+    },
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
+  },
+  "Resources": Object {
+    "NyanCatInstance0A813161": Object {
+      "DependsOn": Array [
+        "NyanCatInstanceInstanceRoleDefaultPolicy32BB1112",
+        "NyanCatInstanceInstanceRole8EA98D1A",
+      ],
+      "Properties": Object {
+        "AvailabilityZone": "dummy1a",
+        "IamInstanceProfile": Object {
+          "Ref": "NyanCatInstanceInstanceProfile11617FB9",
+        },
+        "ImageId": Object {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
+        "InstanceType": "t3.nano",
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "NyanCatInstanceInstanceSecurityGroup9F22F288",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": "s-12345",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "demo-stack/NyanCat/Instance",
+          },
+        ],
+        "UserData": Object {
+          "Fn::Base64": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "#!/bin/bash
+mkdir -p $(dirname '/tmp/",
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "')
+aws s3 cp 's3://",
+                Object {
+                  "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3BucketE132AC7C",
+                },
+                "/",
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "' '/tmp/",
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "'
+set -e
+chmod +x '/tmp/",
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "'
+'/tmp/",
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3VersionKeyEA599A1F",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                "' --verbose -y",
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::EC2::Instance",
+    },
+    "NyanCatInstanceInstanceProfile11617FB9": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "NyanCatInstanceInstanceRole8EA98D1A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "NyanCatInstanceInstanceRole8EA98D1A": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ec2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "demo-stack/NyanCat/Instance",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "NyanCatInstanceInstanceRoleDefaultPolicy32BB1112": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3BucketE132AC7C",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Ref": "AssetParameters42e743f55694c1641cf9bc342156e62e537d2377ff20bafe4a0ffe719e42a711S3BucketE132AC7C",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "NyanCatInstanceInstanceRoleDefaultPolicy32BB1112",
+        "Roles": Array [
+          Object {
+            "Ref": "NyanCatInstanceInstanceRole8EA98D1A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "NyanCatInstanceInstanceSecurityGroup9F22F288": Object {
+      "Properties": Object {
+        "GroupDescription": "demo-stack/NyanCat/Instance/InstanceSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80,
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "demo-stack/NyanCat/Instance",
+          },
+        ],
+        "VpcId": "vpc-12345",
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+  },
+}
+`;
